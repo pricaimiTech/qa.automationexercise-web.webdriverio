@@ -1,4 +1,5 @@
 # Projeto de Automação de Testes Web - Automation Exercise
+[![Test and Generate Allure Report](https://github.com/pricaimiTech/qa.automationexercise-web.webdriverio/actions/workflows/test-and-report.yml/badge.svg)](https://github.com/pricaimiTech/qa.automationexercise-web.webdriverio/actions/workflows/test-and-report.yml)
 
 ## Descrição
 
