@@ -29,7 +29,7 @@ jobs:
          wget -q https://msedgedriver.azureedge.net/136.0.3240.64/edgedriver_linux64.zip
          unzip edgedriver_linux64.zip -d /usr/local/bin/
 
-    - name: Install Google Chrome
+    - name: Check Google Chrome Version
       run: |
         sudo apt-get update
         sudo apt-get install -y google-chrome-stable
