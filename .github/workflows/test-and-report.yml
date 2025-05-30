@@ -26,10 +26,8 @@ jobs:
 
     - name: Install EdgeDriver
       run: |
-        EDGE_VERSION=$(microsoft-edge --version | grep -oP '\d+\.\d+\.\d+')
-        echo "Edge Version: $EDGE_VERSION"
-        wget -q "https://msedgedriver.azureedge.net/$EDGE_VERSION/edgedriver_linux64.zip"
-        unzip edgedriver_linux64.zip -d /usr/local/bin/
+         wget -q https://msedgedriver.azureedge.net/136.0.3240.64/edgedriver_linux64.zip
+         unzip edgedriver_linux64.zip -d /usr/local/bin/
 
     - name: Install dependencies
       run: npm install
