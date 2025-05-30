@@ -65,7 +65,7 @@ exports.config = {
             maxInstances: 1,
             browserName: 'MicrosoftEdge',
             'ms:edgeOptions': {
-                args: ['--headless', '--disable-gpu', '--window-size=1920,1080','--start-maximized']
+                args: ['--headless', '--disable-gpu', '--window-size=1920,1080', '--start-maximized']
             }
         }
     ],
@@ -140,7 +140,14 @@ exports.config = {
     // Test reporter for stdout.
     // The only one supported by default is 'dot'
     // see also: https://webdriver.io/docs/dot-reporter
-    reporters: ['spec'],
+    reporters: [
+        'spec',
+        ['allure', {
+            outputDir: 'allure-results',
+            disableWebdriverStepsReporting: true,
+            disableWebdriverScreenshotsReporting: false,
+        }]
+    ],
 
     // Options to be passed to Mocha.
     // See the full list at http://mochajs.org/
