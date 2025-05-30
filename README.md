@@ -24,6 +24,8 @@ Os seguintes casos de teste foram automatizados neste projeto:
 *   **Relatórios:** Allure Reports
 *   **CI/CD:** GitHub Actions
 *   **Padrão de Projeto:** Page Object Model (POM) para organização e manutenibilidade do código.
+*   **Navegadores:** Chrome e Edge
+
 
 ## Estrutura do Projeto
 
