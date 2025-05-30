@@ -29,8 +29,25 @@ jobs:
          wget -q https://msedgedriver.azureedge.net/136.0.3240.64/edgedriver_linux64.zip
          unzip edgedriver_linux64.zip -d /usr/local/bin/
 
+    - name: Check Google Chrome Version
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y google-chrome-stable
+        google-chrome --version
+
+    - name: Install Google Chrome
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y wget unzip
+        wget -q -O google-chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+        sudo dpkg -i google-chrome.deb || sudo apt-get -f install -y
+        google-chrome --version
+
     - name: Install dependencies
       run: npm install
+
+    - name: Limpar diretorio do report
+      run: npm run pretest
 
     - name: Run tests
       run: npm run test

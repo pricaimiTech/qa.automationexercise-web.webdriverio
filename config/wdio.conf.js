@@ -50,17 +50,18 @@ exports.config = {
     // https://saucelabs.com/platform/platform-configurator
     //
     services: [
-        // 'chromedriver', 
+        'chromedriver',
         'edgedriver'
     ], // Adicione 'edgedriver'
 
     capabilities: [
-        // {
-        //     browserName: 'chrome',
-        //     'goog:chromeOptions': {
-        //         args: ['--start-maximized']
-        //     }
-        // },
+        {
+            maxInstances: 1,
+            browserName: 'chrome',
+            'goog:chromeOptions': {
+                args: ['--headless', '--disable-gpu', '--window-size=1920,1080', '--start-maximized']
+            }
+        },
         {
             maxInstances: 1,
             browserName: 'MicrosoftEdge',
@@ -145,7 +146,7 @@ exports.config = {
         ['allure', {
             outputDir: 'allure-results',
             disableWebdriverStepsReporting: true,
-            disableWebdriverScreenshotsReporting: false,
+            disableWebdriverScreenshotsReporting: true,
         }]
     ],
 
