@@ -1,0 +1,45 @@
+name: Test and Generate Allure Report
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+
+    - name: Check Edge Version
+      run: microsoft-edge --version
+
+    - name: Install EdgeDriver
+      run: |
+         wget -q https://msedgedriver.azureedge.net/136.0.3240.64/edgedriver_linux64.zip
+         unzip edgedriver_linux64.zip -d /usr/local/bin/
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Run tests
+      run: npm run test
+
+    - name: Generate Allure Report
+      run: npm run allure:generate
+
+    - name: Upload Allure Report
+      uses: actions/upload-artifact@v4.6.2
+      with:
+        name: allure-report
+        path: allure-report

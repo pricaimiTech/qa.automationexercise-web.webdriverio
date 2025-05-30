@@ -136,3 +136,6 @@ dist
 .pnp.*
 
 package-lock.json
+
+allure-results/*
+allure-report/*
