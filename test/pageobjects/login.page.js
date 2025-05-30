@@ -1,39 +1,38 @@
-const { $ } = require('@wdio/globals')
-const Page = require('./page');
+const {
+    $,
+    expect
+} = require('@wdio/globals')
+const {
+    signUpElements,
+    formLogin
+} = require('../elements/login.elements')
+const Home = require('../pageobjects/home.page')
 
-/**
- * sub page containing specific selectors and methods for a specific page
- */
-class LoginPage extends Page {
-    /**
-     * define selectors using getter methods
-     */
-    get inputUsername () {
-        return $('#username');
+class LoginPage extends Home {
+
+    async verifyNewUserSignupIsVisible() {
+        const elem = $(signUpElements.signupText)
+        await expect(elem).toBeDisplayed();
+        await expect(elem).toHaveText('New User Signup!')
     }
 
-    get inputPassword () {
-        return $('#password');
+    async formRegisterNewUser(userLoginData) {
+        await $(formLogin.nameInput).setValue(userLoginData.name);
+        await $(formLogin.emailInput).setValue(userLoginData.email);
     }
 
-    get btnSubmit () {
-        return $('button[type="submit"]');
+    async registerNewUser() {
+        const signUpButton = $(formLogin.signUpButton);
+        await expect(signUpButton).toBeDisplayed();
+        await expect(signUpButton).toBeClickable();
+        await signUpButton.click();
     }
 
-    /**
-     * a method to encapsule automation code to interact with the page
-     * e.g. to login using username and password
-     */
-    async login (username, password) {
-        await this.inputUsername.setValue(username);
-        await this.inputPassword.setValue(password);
-        await this.btnSubmit.click();
-    }
 
     /**
      * overwrite specific options to adapt it to page object
      */
-    open () {
+    open() {
         return super.open('login');
     }
 }
