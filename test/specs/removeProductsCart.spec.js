@@ -5,7 +5,7 @@ const CartPage = require('../pageobjects/cart.page')
 const homePage = new Home();
 
 
-describe('[TC-013] Test Case 13: Verify Product quantity in Cart', () => {
+describe('[TC-017] Test Case 17: Remove Products From Cart', () => {
     let productId = 1
     let quantity = 1
 
