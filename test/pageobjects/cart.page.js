@@ -9,8 +9,8 @@ class CartPage {
     expect(items).toBeElementsArrayOfSize(qtd);
   }
 
-  verifyCartDetails() {
-     const items = $$(cartPage.cartItems);
+  async verifyCartDetails() {
+     const items = await $$(cartPage.cartItems);
 
     items.forEach(item => {
       const price = parseFloat(item.$(cartPage.cartPrice).getText().replace('$', ''));

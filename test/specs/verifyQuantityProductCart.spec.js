@@ -5,7 +5,7 @@ const CartPage = require('../pageobjects/cart.page')
 const homePage = new Home();
 
 
-describe('Add Products in Cart', () => {
+describe('[TC-012] Test Case 12: Add Products in Cart', () => {
 
     before(() => {
         homePage.open()
@@ -31,11 +31,13 @@ describe('Add Products in Cart', () => {
      * @bug This test is skipped because the second product is not available in the current test environment.
      */
     it.skip("7. Hover over second product and click 'Add to cart'", async () => {
+        allure.addInfo('This test is skipped because the second product is not available in the current test environment.');
+
         await Product.addProductToCart(2);
         await Product.clickContinueShopping();
     });
 
-    it("8. Click 'View Cart' button", async() => {
+    it("8. Click 'View Cart' button", async () => {
         await homePage.chooseMenu(menuLinks.cartLink);
 
     });

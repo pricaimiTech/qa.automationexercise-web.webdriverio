@@ -31,9 +31,11 @@ describe('[TC-009] Test Case 9: Search Product', () => {
     });
 
     /**
-     * * This test is skipped because the search results are not working with automation.
+     * @bug This test is skipped because the search results are not working with automation.
      */
     it.skip("8. Verify all the products related to search are visible", async () => {
+        allure.addInfo('This test is skipped because the search results are not working with automation.');
+
         await Product.searchResultIsVisible(productName);
     });
 });
