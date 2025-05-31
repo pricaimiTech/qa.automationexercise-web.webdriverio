@@ -1,6 +1,7 @@
 const {
     titleInPage,
-    searchProduct
+    searchProduct,
+    productsPage
 } = require('../elements/products.elements')
 
 
@@ -39,6 +40,21 @@ class Product {
             const text = await elem.getText();
             await expect(text).toContain(product);
         }
+    }
+
+    async addProductToCart(productIndex) {
+        const productHover = await $(`${productsPage.listProducts}:nth-child(${productIndex})`);
+        const addToCartButton = await $(`${searchProduct.searchResult} div[class="overlay-content"]  a[data-product-id="${productIndex}"`);
+
+        await productHover.moveTo();
+        await expect(addToCartButton).toBeDisplayed();
+        await addToCartButton.click();
+    }
+
+    async clickContinueShopping() {
+        const continueButton = await $(productsPage.continueShoppingButton);
+        await expect(continueButton).toBeDisplayed();
+        await continueButton.click();
     }
 }
 
