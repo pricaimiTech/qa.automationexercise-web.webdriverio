@@ -21,11 +21,14 @@ class CartPage {
     });
   }
 
-  async verifyProductsInCart(qtd) {
-    const item = await $$(cartPage.cartItems);
-    expect(item).toBeElementsArrayOfSize(1);
-    const quantity = await item.$(cartPage.cartQuantity).getText();
-    expect(quantity).toBe(qtd);
+  async verifyProductsInCart(expectedQuantity) {
+    const items = await $$(cartPage.cartItems);
+    expect(items).toBeElementsArrayOfSize(1);
+
+    const quantityText = await items[0].$(cartPage.cartQuantity).getText();
+    const actualQuantity = parseInt(quantityText, 10);
+
+    expect(actualQuantity).toBe(expectedQuantity);
   }
 
 }

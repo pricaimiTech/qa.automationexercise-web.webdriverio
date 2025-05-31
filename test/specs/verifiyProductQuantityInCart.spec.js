@@ -22,7 +22,7 @@ describe('[TC-013] Test Case 13: Verify Product quantity in Cart', () => {
     });
 
     it("5. Verify product detail is opened", async () => {
-          expect(browser).toHaveUrl(`http://automationexercise.com/product_details/${productId}`);
+        expect(browser).toHaveUrl(`http://automationexercise.com/product_details/${productId}`);
     });
 
     it("6. Increase quantity to 4", async () => {
@@ -31,14 +31,15 @@ describe('[TC-013] Test Case 13: Verify Product quantity in Cart', () => {
 
     it("7. Click 'Add to cart' button", async () => {
         await Product.addProductToCart();
+        await Product.clickContinueShopping();
     });
 
     it("8. Click 'View Cart' button", async () => {
         await homePage.chooseMenu(menuLinks.cartLink);
     });
 
-    it("9. Verify that product is displayed in cart page with exact quantity", () => {
-        CartPage.verifyProductsInCart(quantity)
+    it("9. Verify that product is displayed in cart page with exact quantity", async () => {
+        await CartPage.verifyProductsInCart(quantity)
     });
 
 });
