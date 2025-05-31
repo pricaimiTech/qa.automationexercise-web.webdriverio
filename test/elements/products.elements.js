@@ -9,7 +9,14 @@ const searchProduct = {
     listProductsName: 'div[class="features_items"] div[class="productinfo text-center"] p'
 }
 
+const productsPage = {
+    listProducts: 'div[class="features_items"] div[class="product-image-wrapper"]',
+    addhoverProduct: 'div.product',
+    continueShoppingButton: 'button[class="btn btn-success close-modal btn-block"]'
+}
+
 module.exports = {
     titleInPage,
-    searchProduct
+    searchProduct,
+    productsPage
 }
