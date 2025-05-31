@@ -11,17 +11,17 @@ Este projeto contém testes automatizados para o site [Automation Exercise](http
 
 Os seguintes casos de teste foram automatizados neste projeto:
 
-1.  **Test Case 1:** Register User
-2.  **Test Case 9:** Search Product
-3.  **Test Case 12:** Add Products in Cart
-4.  **Test Case 13:** Verify Product quantity in Cart
-5.  **Test Case 17:** Remove Products From Cart
+- [x]  **Test Case 1:** Register User
+- [x]  **Test Case 9:** Search Product
+- [ ]  **Test Case 12:** Add Products in Cart
+- [ ]  **Test Case 13:** Verify Product quantity in Cart
+- [ ]  **Test Case 17:** Remove Products From Cart
 
 ## Tecnologias e Frameworks Utilizados
 
 *   **Framework de Automação:** WebdriverIO
-*   **Linguagem:** JavaScript/TypeScript (conforme sua escolha no projeto WebdriverIO)
-*   **Gerenciador de Pacotes:** NPM ou Yarn
+*   **Linguagem:** JavaScript
+*   **Gerenciador de Pacotes:** NPM
 *   **Relatórios:** Allure Reports
 *   **CI/CD:** GitHub Actions
 *   **Padrão de Projeto:** Page Object Model (POM) para organização e manutenibilidade do código.
@@ -37,6 +37,7 @@ Os seguintes casos de teste foram automatizados neste projeto:
 ├── allure-results/ # Diretório gerado para os resultados brutos do Allure 
 ├── allure-report/ # Diretório gerado para o relatório HTML do Allure 
 ├── node_modules/ # Dependências do projeto 
+├── img # imagens para o readme
 ├── src
 │ ├── data/ #dados fakes ou mocados 
 │ ├── utils/ # Funções utils para a automação
@@ -84,62 +85,25 @@ Antes de começar, certifique-se de ter o seguinte software instalado em sua má
 
 Os testes são configurados para rodar em modo *headless* por padrão, conforme especificado no arquivo `wdio.conf.js`.
 
-1.  **Para executar todos os testes:**
+1.  **Pre test: limpando a pasta dos reports**
+    ```bash
+    npm pretest
+    ```
+
+2.  **Para executar todos os testes:**
     ```bash
     npm test
     ```
-    Ou (se configurado no `package.json`):
+
+3.  **Para executar um teste em específico:**
     ```bash
-    yarn test
+    npx wdio wdio.conf.js --suite test/spec/[nome da spec que deseja rodar]
     ```
 
-2.  **Para executar uma suíte de testes específica:**
-    Você pode configurar scripts no `package.json` ou usar a CLI do WebdriverIO para rodar suítes específicas.
-    Exemplo de comando (pode variar dependendo da sua configuração `wdio.conf.js`):
-    ```bash
-    npx wdio wdio.conf.js --suite registerSuite
-    npx wdio wdio.conf.js --suite productSuite
-    ```
-    *Nota: Você precisará definir as `suites` no seu arquivo `wdio.conf.js`.*
-
-    Exemplo de configuração de suítes no `wdio.conf.js`:
-    ```javascript
-    // ... outras configurações ...
-    suites: {
-        registerSuite: [
-            './specs/suite1/registerUser.e2e.js'
-        ],
-        productSuite: [
-            './specs/suite2/productSearch.e2e.js',
-            './specs/suite2/productCart.e2e.js'
-            // Adicione aqui os outros testes relacionados a produtos
-        ],
-        // Adicione mais suítes conforme necessário
-    },
-    // ... outras configurações ...
-    ```
-
-## Relatórios de Teste com Allure
-
-Após a execução dos testes, os resultados brutos do Allure são gerados no diretório `allure-results`.
-
-1.  **Para gerar o relatório HTML do Allure:**
-    ```bash
-    npm run allure-report
-    ```
-    Ou (se configurado no `package.json`):
-    ```bash
-    yarn allure-report
-    ```
-    Este comando geralmente executa algo como:
-    ```bash
-    allure generate allure-results --clean && allure open
-    ```
-    O relatório será aberto automaticamente no seu navegador padrão.
 
 ## Pipeline de CI/CD com GitHub Actions
 
-Este projeto está configurado com um pipeline no GitHub Actions, definido no arquivo `.github/workflows/main.yml`.
+Este projeto está configurado com um pipeline no GitHub Actions, definido no arquivo `.github/workflows/test-and-report.yml`.
 O pipeline será acionado automaticamente em eventos como `push` para a branch `main` ou em `pull requests` direcionados à `main`.
 
 As etapas do pipeline geralmente incluem:
@@ -147,20 +111,29 @@ As etapas do pipeline geralmente incluem:
 2.  Setup do Node.js.
 3.  Instalação de dependências.
 4.  Execução dos testes.
-5.  (Opcional) Geração e publicação do relatório Allure (pode ser feito usando GitHub Pages ou uma action específica).
+5.  Geração e disponibilização do relatório Allure para download
 
-## Mapeamento de Elementos
+## Estrutura da Automação
 
-O mapeamento de elementos da interface do usuário é realizado utilizando o padrão Page Object Model. Cada página da aplicação possui uma classe correspondente no diretório `pageobjects/`. Nessas classes, os seletores dos elementos são armazenados e métodos são criados para interagir com esses elementos, promovendo reutilização e facilidade de manutenção.
+O mapeamento de elementos da interface do usuário é realizado utilizando o padrão Page Object Model. Cada página da aplicação possui uma classe correspondente no diretório `pageobjects/` e `elements/`: 
+- Na pasta de `elements/`: os elementos são mapeados 
+- Na pasta de `pageobjects/`: Nessa classe os métodos são criados para interagir com esses elementos, promovendo reutilização e facilidade de manutenção.
 
-## Considerações Sobre os Critérios de Avaliação
+## Report Allure 
 
-*   **Código de Fácil Entendimento:** Adoção do padrão Page Object Model (POM) e nomenclaturas claras para variáveis, funções e classes.
-*   **Padrão de Projeto:** Utilização do Page Object Model.
-*   **Execução Headless:** Configurada por padrão no `wdio.conf.js` para execução em ambientes de CI e para performance.
-*   **Testes Organizados em Suítes:** Os testes são agrupados em suítes lógicas (ex: `registerSuite`, `productSuite`) no arquivo `wdio.conf.js` para facilitar a execução seletiva.
-*   **Performance de Execução:** O modo headless contribui para a performance. A estrutura do WebdriverIO também é otimizada para execuções eficientes.
-*   **Organização do Código:** Estrutura de diretórios clara separando configurações, page objects, specs e relatórios.
-*   **Integração com Allure Reports:** Configurado para gerar relatórios detalhados após a execução dos testes.
-*   **Pipeline no GitHub Actions:** Implementado para automação de build e teste.
-*   **Mapeamento de Elementos:** Centralizado nas classes Page Object.
+
+Para gerar o relatório utilize o comando abaixo
+
+**Gerar o report:**
+    ```bash
+    allure generate allure-results && allure open
+    ```
+
+Será gerado um `localhost` e a página com o report será exibida 
+
+![allure open](img/allure-open.png)
+
+
+Ao clicar em um test, será possível ver todos os dados da execução. Inclusive em caso de **falha** como a imagem abaixo, terá uma imagem e o erro informando.
+![allure explore](img/allure-explore.png)
+

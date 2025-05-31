@@ -3,8 +3,7 @@ const {
 } = require('@wdio/globals')
 const {
     homeElements,
-    menuElements,
-    userLogged
+    menuElements
 } = require('../elements/home.elements')
 
 /**
@@ -53,6 +52,12 @@ class Home {
 
     async deleteAccount() {
         const elem = await $(menuElements.deleteAccount)
+        await expect(elem).toBeDisplayed()
+        elem.click()
+    }
+
+    async chooseMenu(menu) {
+        const elem = await $(`a[href="${menu}"]`)
         await expect(elem).toBeDisplayed()
         elem.click()
     }
