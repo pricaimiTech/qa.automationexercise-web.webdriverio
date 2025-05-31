@@ -14,7 +14,7 @@ Os seguintes casos de teste foram automatizados neste projeto:
 - [x]  **Test Case 1:** Register User
 - [x]  **Test Case 9:** Search Product
 - [x]  **Test Case 12:** Add Products in Cart
-- [ ]  **Test Case 13:** Verify Product quantity in Cart
+- [x]  **Test Case 13:** Verify Product quantity in Cart
 - [ ]  **Test Case 17:** Remove Products From Cart
 
 ## Tecnologias e Frameworks Utilizados
