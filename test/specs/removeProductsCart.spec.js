@@ -20,7 +20,7 @@ describe('[TC-013] Test Case 13: Verify Product quantity in Cart', () => {
     it("4. Add products to cart", async () => {
         await Product.viewProduct(productId)
         await Product.increaseProductQuantity(quantity)
-        await Product.addProductToCart();
+        await Product.btnAddProductToCart();
         await Product.clickContinueShopping();
     });
 
