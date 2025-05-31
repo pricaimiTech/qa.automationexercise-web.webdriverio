@@ -146,9 +146,15 @@ exports.config = {
         ['allure', {
             outputDir: 'allure-results',
             disableWebdriverStepsReporting: true,
-            disableWebdriverScreenshotsReporting: true,
+            disableWebdriverScreenshotsReporting: false,
         }]
     ],
+
+    afterTest: async (test, context, { error, result }) => {
+        if (error || result === 1) {
+            await browser.takeScreenshot();
+        }
+    },
 
     // Options to be passed to Mocha.
     // See the full list at http://mochajs.org/

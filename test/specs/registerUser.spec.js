@@ -5,7 +5,7 @@ const homePage = new Home();
 const generateNewFakeUser = require('../../src/data/userData')
 const NotificationPage = require('../pageobjects/notification.page')
 
-describe('[TC-001] Register User', () => {
+describe('[TC-001] Test Case 1: Register User', () => {
     let userData;
 
     before(() => {
