@@ -1,7 +1,8 @@
 const {
     titleInPage,
     searchProduct,
-    productsPage
+    productsPageHome,
+    productPage
 } = require('../elements/products.elements')
 
 
@@ -43,7 +44,7 @@ class Product {
     }
 
     async addProductToCart(productIndex) {
-        const productHover = await $(`${productsPage.listProducts}:nth-child(${productIndex})`);
+        const productHover = await $(`${productsPageHome.listProducts}:nth-child(${productIndex})`);
         const addToCartButton = await $(`${searchProduct.searchResult} div[class="overlay-content"]  a[data-product-id="${productIndex}"`);
 
         await productHover.moveTo();
@@ -52,9 +53,29 @@ class Product {
     }
 
     async clickContinueShopping() {
-        const continueButton = await $(productsPage.continueShoppingButton);
+        const continueButton = await $(productsPageHome.continueShoppingButton);
         await expect(continueButton).toBeDisplayed();
         await continueButton.click();
+    }
+
+    async viewProduct(productIndex) {
+        const viewProductButton = await $(`${productsPageHome.viewProduct}:nth-child(${productIndex})`);
+
+        await expect(viewProductButton).toBeDisplayed();
+        await viewProductButton.click();
+    }
+
+    async increaseProductQuantity(quantity) {
+        const inputQuantity = await $(productPage.inputQuantity);
+        await expect(inputQuantity).toBeDisplayed();
+        await inputQuantity.setValue(quantity);
+
+    }
+
+    async addProductToCart() {
+        const addToCartButton = await $(productPage.buttonAddToCart);
+        await expect(addToCartButton).toBeDisplayed();
+        await addToCartButton.click();
     }
 }
 

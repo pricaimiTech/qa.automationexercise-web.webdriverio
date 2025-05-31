@@ -10,7 +10,7 @@ class CartPage {
   }
 
   async verifyCartDetails() {
-     const items = await $$(cartPage.cartItems);
+    const items = await $$(cartPage.cartItems);
 
     items.forEach(item => {
       const price = parseFloat(item.$(cartPage.cartPrice).getText().replace('$', ''));
@@ -20,6 +20,14 @@ class CartPage {
       expect(total).toBeCloseTo(price * quantity, 2);
     });
   }
+
+  async verifyProductsInCart(qtd) {
+    const item = await $$(cartPage.cartItems);
+    expect(item).toBeElementsArrayOfSize(1);
+    const quantity = await item.$(cartPage.cartQuantity).getText();
+    expect(quantity).toBe(qtd);
+  }
+
 }
 
 module.exports = new CartPage();

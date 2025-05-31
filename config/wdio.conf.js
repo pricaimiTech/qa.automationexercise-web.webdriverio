@@ -51,7 +51,7 @@ exports.config = {
     //
     services: [
         'chromedriver',
-        'edgedriver'
+        // 'edgedriver'
     ], // Adicione 'edgedriver'
 
     capabilities: [
@@ -59,7 +59,7 @@ exports.config = {
             maxInstances: 1,
             browserName: 'chrome',
             'goog:chromeOptions': {
-                args: ['--headless', '--disable-gpu', '--window-size=1920,1080', '--start-maximized']
+                args: [ '--start-maximized']
             }
         },
         {
