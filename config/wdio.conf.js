@@ -51,7 +51,7 @@ exports.config = {
     //
     services: [
         'chromedriver',
-        'edgedriver'
+        // 'edgedriver'
     ], // Adicione 'edgedriver'
 
     capabilities: [

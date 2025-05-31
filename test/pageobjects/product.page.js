@@ -72,7 +72,7 @@ class Product {
 
     }
 
-    async addProductToCart() {
+    async btnAddProductToCart() {
         const addToCartButton = await $(productPage.buttonAddToCart);
         await expect(addToCartButton).toBeDisplayed();
         await addToCartButton.click();
