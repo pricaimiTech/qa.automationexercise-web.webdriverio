@@ -1,0 +1,6 @@
+[submodule "automation-test-data-factory"]
+	path = automation-test-data-factory
+	url = https://github.com/pricaimiTech/automation-test-data-factory.git
+[submodule "shared/automation-test-data-factory"]
+	path = shared/automation-test-data-factory
+	url = https://github.com/pricaimiTech/automation-test-data-factory.git
