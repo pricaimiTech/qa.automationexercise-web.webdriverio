@@ -2,7 +2,6 @@ const Home = require('../pageobjects/home.page')
 const LoginPage = require('../pageobjects/login.page')
 const RegisterPage = require('../pageobjects/register.page')
 const homePage = new Home();
-const generateNewFakeUser = require('../../src/data/userData')
 const NotificationPage = require('../pageobjects/notification.page')
 
 describe('[TC-001] Test Case 1: Register User', () => {
@@ -10,7 +9,10 @@ describe('[TC-001] Test Case 1: Register User', () => {
 
     before(() => {
         homePage.open()
-        userData = generateNewFakeUser()
+        userData = generateUser({
+            country: 'United States'
+        })
+        console.log('User data for registration:', JSON.stringify(userData, null, 2));
     })
 
     it('3. Verify that home page is visible successfully ', async () => {
